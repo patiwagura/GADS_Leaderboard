@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">GADS_Leaderboard</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment_hours_title">I am in Fragment Hours</string>
+    <string name="fragment_iq_title">I am in Fragment SKILL IQ</string>
 </resources>
