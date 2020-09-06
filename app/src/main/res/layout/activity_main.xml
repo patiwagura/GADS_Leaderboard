@@ -30,12 +30,13 @@
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
         android:minHeight="?actionBarSize"
-        app:tabBackground="@color/colorPrimary"
         app:tabGravity="fill"
         app:tabIndicatorColor="#ffffff"
         app:tabIndicatorHeight="4dp"
-        app:tabMode="fixed" />
+        app:tabMode="fixed"
+        app:tabTextColor="#ffffff" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"

@@ -79,14 +79,7 @@ public class TabsFragment extends Fragment {
 
         // get REST-API Interface.
         gadsApi = RetrofitClient.getClient().create(GadsApiInterface.class);
-
-        if (mFragmentPos == 0) {
-            // load Learning Hours.
-            getLearnerHours();
-        } else if (mFragmentPos == 1) {
-            // Load Skill_IQ Leaders.
-            getLearnerSkillIq();
-        }
+        loadDataFromApi();
 
     }
 
@@ -151,6 +144,17 @@ public class TabsFragment extends Fragment {
 
     }
 
+    private void loadDataFromApi() {
+        if (mFragmentPos == 0) {
+            // load Learning Hours.
+            getLearnerHours();
+        } else if (mFragmentPos == 1) {
+            // Load Skill_IQ Leaders.
+            getLearnerSkillIq();
+        }
+
+    }
+
     // show a Toast message.
     public void ToastError(String msg) {
         Toast.makeText(this.getContext(), msg, Toast.LENGTH_SHORT).show();
@@ -167,7 +171,8 @@ public class TabsFragment extends Fragment {
         //fetchData_Async = new FetchData();
         //fetchData_Async.execute();
 
-        // getLearnerHours();
+        // In-case we start app without wifi => Load data when wifi is connected.
+        loadDataFromApi();
 
         Log.e(TAG, "onResume: ----------------------");
 

@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
                         tab.setText(tabsTitles.get(position));
 
+
                         // I can post the current Tab_position to RecyclerViewAdapter => determine which data to load.
 
                         Log.e(TAG, "onConfigureTab: Setting Tab-Titles: " + tabsTitles.get(position));
