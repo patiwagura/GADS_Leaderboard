@@ -3,6 +3,7 @@ package com.pato.gadsleaderboard.views;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pato.gadsleaderboard.GadsApiInterface;
@@ -28,6 +31,7 @@ public class SubmitProjectActivity extends AppCompatActivity {
     // references to ui-views.
     private EditText et_fName, et_lName, et_email, et_gitRepoUrl;
     private Button btn_submit;
+    Toolbar mToolBar;
 
     private GadsApiInterface gadsApi;
 
@@ -37,8 +41,18 @@ public class SubmitProjectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit_project);
 
+        // Toolbar
+//        mToolBar = new Toolbar(this);
+//        mToolBar.setTitle(getString(R.string.app_name));
+//        setSupportActionBar(mToolBar);
+//        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_cancel);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        // Default => ActionBar
         ActionBar actionBar = getSupportActionBar();
         //enable up button.
+        actionBar.setLogo(R.drawable.gads_logo);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         gadsApi = RetrofitClient.getClient().create(GadsApiInterface.class);
@@ -82,11 +96,16 @@ public class SubmitProjectActivity extends AppCompatActivity {
     }
 
     private void showAlertDialog(int iconId, String message) {
-        AlertDialog.Builder success = new AlertDialog.Builder(this);
-        success.setIcon(iconId)
-                .setMessage(message)
+        View view = getLayoutInflater().inflate(R.layout.my_alert_dialog, null);
+        ((TextView) view.findViewById(R.id.tv_alertMessage)).setText(message);
+        ((ImageView) view.findViewById(R.id.imgAlert)).setImageResource(iconId);
+
+        AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
+        myDialog
+                .setView(view)
                 .setCancelable(true);
-        AlertDialog dialog = success.create();
+
+        AlertDialog dialog = myDialog.create();
         dialog.show();
     }
 
@@ -143,6 +162,9 @@ public class SubmitProjectActivity extends AppCompatActivity {
                                 showAlertDialog(R.drawable.ic_warning, "Submission not Successful");
 
                             }
+                        } else {
+                            // response is null => some error.
+                            showAlertDialog(R.drawable.ic_warning, "Submission not Successful");
                         }
 
                         dialog.dismiss();
