@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="8dp"
+    android:background="@drawable/splash_bg"
     android:padding="4dp"
     tools:context=".views.SubmitProjectActivity">
+
+    <!--    include the ToolBar here. -->
 
 
     <!--    Logo goes here.-->
@@ -16,6 +18,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
+        android:background="#fff"
         android:hint="First Name"
         app:layout_constraintEnd_toStartOf="@+id/et_last_name"
         app:layout_constraintStart_toStartOf="parent"
